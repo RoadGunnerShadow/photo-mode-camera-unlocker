@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# C++ build artifacts (native injector shim)
+native/build/
+native/**/*.obj
+native/**/*.pdb
+native/**/*.dll
+native/**/*.lib
+
+# C# / .NET
+dotnet/bin/
+dotnet/obj/
+*.user
+
+# Java
+java/out/
+java/target/
+
+# Runtime / session logs
+logs/*.log
+logs/*.jsonl
+*.dump
+*.scn
+
+# Local overrides
+config/local.yaml
+config/secrets.yaml
+*.local.toml
+
+# Caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
