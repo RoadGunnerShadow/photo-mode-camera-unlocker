@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "photo-mode-camera-unlocker"
+version = "0.6.3"
+description = "Free-camera photo mode injector — plugin-host tooling for unlocking detached photo-mode cameras in supported titles."
+readme = "CONTRIBUTING.md"
+requires-python = ">=3.10"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "pmcu contributors" }]
+keywords = ["photo-mode", "freecam", "injector", "modding", "plugin-host"]
+
+dependencies = [
+    "pyyaml>=6.0",
+    "pydantic>=2.6",
+    "rich>=13.7",
+    "watchdog>=4.0",
+    "pywin32>=306; sys_platform == 'win32'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23", "mypy>=1.8", "ruff>=0.4"]
+native = ["cffi>=1.16"]
+
+[project.scripts]
+pmcu = "pmcu.cli.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
