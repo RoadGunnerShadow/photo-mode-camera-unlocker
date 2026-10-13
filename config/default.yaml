@@ -1,0 +1,54 @@
+host:
+  name: "photo-mode-camera-unlocker"
+  version: "0.6.3"
+  log_level: "INFO"
+  plugin_dirs:
+    - "src/pmcu/injectors"
+  hot_reload: true
+  reload_debounce_ms: 400
+
+attach:
+  strategy: "name"          # name | window_title | pid
+  target_name: null         # set per session or via CLI --target
+  open_process_flags: 0x001F0FFF   # PROCESS_ALL_ACCESS
+  retry_ms: 250
+  retry_budget_ms: 15000
+
+memory:
+  page_size: 4096
+  scan_chunk_bytes: 1048576
+  max_scan_regions: 4096
+  region_filter:
+    - "MEM_PRIVATE"
+    - "MEM_IMAGE"
+
+native:
+  shim_path: "native/build/pmcu_shim.dll"
+  verify_sha256: true
+  load_method: "createremotethread"   # createremotethread | manual_map
+
+photo_mode:
+  detach_camera: true
+  unlock_fov: true
+  unlock_roll: true
+  unlock_focus_distance: true
+  freeze_world: false
+  default_fov_deg: 60.0
+  fov_range_deg: [10.0, 170.0]
+
+input:
+  camera_bindings:
+    forward: "W"
+    back: "S"
+    left: "A"
+    right: "D"
+    up: "SPACE"
+    down: "CTRL"
+    roll_left: "Q"
+    roll_right: "E"
+  speed_default: 4.0
+  speed_fast_multiplier: 5.0
+
+telemetry:
+  enabled: false
+  endpoint: null
